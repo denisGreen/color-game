@@ -1,0 +1,11 @@
+.cards-box {
+  width: 80%;
+  margin: auto;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}

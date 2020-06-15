@@ -1,0 +1,7 @@
+.header {
+  width: 100%;
+}
+.centered {
+  margin: auto;
+  width: max-content;
+}
