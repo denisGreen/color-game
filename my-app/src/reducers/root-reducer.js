@@ -4,7 +4,7 @@ import { Types } from "../actions/types";
 //find item in the state array
 const findItem = (arr, idx) => arr.find(({ id }) => id === idx);
 
-//change single color-card clicked property
+//trig single card.clicked property
 const trigClicked = card => {
   return {
     ...card,
@@ -22,7 +22,7 @@ const removeColors = (state, cards, card, alredyClickedCard) => {
   };
 };
 
-//reset colorCards
+//reset cards with different colors
 const resetColorCards = (
   state,
   cards,
@@ -31,12 +31,13 @@ const resetColorCards = (
   cardIndexInCardsArray,
   alredyClickedCardIndex
 ) => {
+  //reset last open card and save it on the same place
   const resetFirstCard = [
     ...cards.slice(0, cardIndexInCardsArray),
     trigClicked(card),
     ...cards.slice(cardIndexInCardsArray + 1)
   ];
-
+  //reset first open card and save it on the same place
   return {
     ...state,
     cards: [
@@ -46,11 +47,12 @@ const resetColorCards = (
     ]
   };
 };
-//compare colors in card
+//compare colors in cards
 const compareColorsInCards = (state, cards, card) => {
   const alredyClickedCardIndex = cards.findIndex(
     ({ clicked, id }) => clicked === true && id !== card.id
   );
+  //check if some card is open
   if (alredyClickedCardIndex !== -1) {
     console.log("one is clicked");
     //then check id
@@ -78,7 +80,7 @@ const compareColorsInCards = (state, cards, card) => {
   return state;
 };
 
-//updating the cards array
+//trig the card.clicked
 const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
   const clickedCard = trigClicked(card);
 
@@ -90,10 +92,10 @@ const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
       ...cards.slice(cardIndexInCardsArray + 1)
     ]
   };
-  //check if one of the cards is alredy clicked
+  
 };
 
-//
+//root reducer will be passed to the store
 
 const rootReducer = (state = initialState, action = {}) => {
   const { cards } = state;

@@ -9,10 +9,11 @@ const CardsBox = () => {
   const { cards } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  //
+  //If no cards return Error. 
   if (!cards) {
     return new Error("ColorCard crashed");
-  } else if (cards.lengh === 0) {
+  } else if (cards.length === 0) {
+    //When all cards have been removed the game is ended
     return (
       <div className="winner">
         <h1 className="centered">YOU WON!</h1>
@@ -20,6 +21,7 @@ const CardsBox = () => {
       </div>
     );
   } else {
+    //in all other cases render cards array
     return (
       <TransitionGroup className="cards-box">
         {cards.map(card => (

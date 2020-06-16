@@ -1,5 +1,6 @@
 import React from "react";
 import "./color-card.css";
+import PropTypes from "prop-types";
 
 const ColorCard = ({ color, id, clicked, onClick }) => {
   return (
@@ -19,5 +20,12 @@ const ColorCard = ({ color, id, clicked, onClick }) => {
     </div>
   );
 };
+
+ColorCard.propTypes = {
+  color: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  clicked: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired
+}
 
 export default ColorCard;
