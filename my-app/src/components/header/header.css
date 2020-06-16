@@ -1,3 +1,15 @@
 .header {
   width: 100%;
 }
+
+.header-text-color-one{
+  color: red;
+}
+
+.header-text-color-two{
+  color: green;
+}
+
+.header-text-color-three{
+  color: blue;
+}
