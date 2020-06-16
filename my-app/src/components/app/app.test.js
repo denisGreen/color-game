@@ -14,7 +14,7 @@ function setup() {
 }
 
 describe("App", () => {
-  it("should render App and children", () => {
+  it.only("should render App and children", () => {
     const { enzymeWrapper } = setup();
 
     expect(enzymeWrapper.find(CardsBox)).toHaveLength(1);

@@ -7,21 +7,21 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe("Actions", () => {
-  it.only("should create CARD_TOGGLE_CLICK action with id as payload", () => {
+  it("should create CARD_TOGGLE_CLICK action with id as payload", () => {
     const expected = {
       type: Types.CARD_TOGGLE_CLICK,
       payload: 2
     };
     expect(actions.cardToggleClick(2)).toEqual(expected);
   });
-  it.only("should create a CARD_COMPARE_COLORS action ", () => {
+  it("should create a CARD_COMPARE_COLORS action ", () => {
     const expected = {
       type: Types.CARD_COMPARE_COLORS,
       payload: 2
     };
     expect(actions.cardCompare(2)).toEqual(expected);
   });
-  it.only(`should create asynchronuos action and dispatch CARD_TOGGLE_CLICK 
+  it(`should create asynchronuos action and dispatch CARD_TOGGLE_CLICK 
   and CARD_COMPARE_COLORS`, () => {
     const expectedActions = [
       {

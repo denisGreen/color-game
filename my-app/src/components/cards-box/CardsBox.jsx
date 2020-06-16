@@ -9,6 +9,7 @@ const CardsBox = () => {
   const { cards } = useSelector(state => state);
   const dispatch = useDispatch();
 
+  
   //If no cards return Error. 
   if (!cards) {
     return new Error("ColorCard crashed");

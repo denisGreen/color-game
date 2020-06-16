@@ -4,6 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 import CardsBox from "./index";
 import ColorCard from "../color-card";
 
+
 Enzyme.configure({ adapter: new Adapter() });
 
 function setup() {
@@ -16,6 +17,6 @@ function setup() {
 describe("Cards Box", () => {
   it("should render Cards Box and children", () => {
     const { enzymeWrapper } = setup();
-    expect(enzymeWrapper.find(ColorCard)).toHaveLength(2);
+    expect(enzymeWrapper.find(ColorCard)).toHaveLength(16);
   });
 });
