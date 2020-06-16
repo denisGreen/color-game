@@ -2,10 +2,9 @@ import React from "react";
 import "./color-card.css";
 import PropTypes from "prop-types";
 
-const ColorCard = ({ color, id, clicked, onClick }) => {
+const ColorCard = ({ color, clicked, onClick }) => {
   return (
     <div
-      id={id}
       className={"color-card" + (clicked ? " clicked" : "")}
       onClick={onClick}
     >
@@ -23,7 +22,6 @@ const ColorCard = ({ color, id, clicked, onClick }) => {
 
 ColorCard.propTypes = {
   color: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   clicked: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired
 }
