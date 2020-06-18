@@ -9,7 +9,8 @@ import { v4 as uuidv4 } from "uuid";
 //     console.log(color);
 
 const initialState = {
-  level: 1,
+  isComparing: false,
+  openCards: 0,
   cards: [
     {
       id: uuidv4(),

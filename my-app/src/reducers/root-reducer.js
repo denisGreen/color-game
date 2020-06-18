@@ -14,14 +14,21 @@ const trigClicked = card => {
 //remove cards with same color
 const removeColors = (state, cards, card, alredyClickedCard) => {
   return {
-    ...state,
+    isComparing: false,
+    openCards: 0,
     cards: cards.filter(
       colorCard =>
         colorCard.id !== card.id && colorCard.id !== alredyClickedCard.id
     )
   };
 };
-
+//reset single card
+const resetCard = (card)=>{
+  return {
+    ...card,
+    clicked: false
+  }
+}
 //reset cards with different colors
 const resetColorCards = (
   state,
@@ -34,31 +41,37 @@ const resetColorCards = (
   //reset last open card and save it on the same place
   const resetFirstCard = [
     ...cards.slice(0, cardIndexInCardsArray),
-    trigClicked(card),
+    resetCard(card),
     ...cards.slice(cardIndexInCardsArray + 1)
   ];
   //reset first open card and save it on the same place
   return {
-    ...state,
+    isComparing: false,
+    openCards: 0,
     cards: [
       ...resetFirstCard.slice(0, alredyClickedCardIndex),
-      trigClicked(alredyClickedCard),
+      resetCard(alredyClickedCard),
       ...resetFirstCard.slice(alredyClickedCardIndex + 1)
     ]
   };
 };
 //compare colors in cards
 const compareColorsInCards = (state, cards, card) => {
+  const {openCards} = state;
   const alredyClickedCardIndex = cards.findIndex(
     ({ clicked, id }) => clicked === true && id !== card.id
   );
+  
   //check if some card is open
-  if (alredyClickedCardIndex !== -1) {
+
+ 
+  if (openCards === 2) {
     console.log("one is clicked");
     //then check id
+    
     const cardIndexInCardsArray = cards.findIndex(({ id }) => id === card.id);
-    if (cardIndexInCardsArray !== alredyClickedCardIndex) {
-      console.log("cards not the same");
+    if (alredyClickedCardIndex !== -1) {
+      console.log("colors not the same");//cardIndexInCardsArray !== alredyClickedCardIndex
       //then compare colors
       const alredyClickedCard = cards[alredyClickedCardIndex];
       if (alredyClickedCard.color === card.color) {
@@ -74,24 +87,51 @@ const compareColorsInCards = (state, cards, card) => {
           alredyClickedCardIndex
         );
       }
-    }
+    }else{
+      return state;
+      
+    }//
   }
-
-  return state;
+    
+    return state;
 };
-
+//enable comparing state
+const enableComparingState= (state)=>{
+  return{
+    isComparing: true,
+    ...state
+  }
+}
+//disable comparing state
+const disableComparingState= (state)=>{
+  return{
+    isComparing: false,
+    ...state
+  }
+}
 //trig the card.clicked
 const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
-  const clickedCard = trigClicked(card);
+  const {openCards, isComparing} = state;
 
-  return {
-    ...state,
-    cards: [
-      ...cards.slice(0, cardIndexInCardsArray),
-      clickedCard,
-      ...cards.slice(cardIndexInCardsArray + 1)
-    ]
-  };
+  //skip click if two cards already open
+  
+    if(openCards < 2){
+      console.log("openCards", openCards)
+      const clickedCard = trigClicked(card);
+  
+      return {
+        ...state,
+        openCards: openCards + 1,
+        cards: [
+          ...cards.slice(0, cardIndexInCardsArray),
+          clickedCard,
+          ...cards.slice(cardIndexInCardsArray + 1)
+        ]
+      };
+    }
+  
+  
+  return state;
   
 };
 
@@ -108,8 +148,12 @@ const rootReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case Types.CARD_TOGGLE_CLICK:
       return whenClicked(state, cards, card, cardIndexInCardsArray);
+    case Types.CARD_COMPARE_START:
+      return enableComparingState(state);
     case Types.CARD_COMPARE_COLORS:
       return compareColorsInCards(state, cards, card);
+    case Types.CARD_COMPARE_FINISH:
+      return disableComparingState(state);
     default:
       return state;
   }

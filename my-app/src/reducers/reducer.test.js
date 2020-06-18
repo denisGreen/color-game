@@ -4,7 +4,7 @@ import { Types } from "../actions/types";
 import initialState from '../reducers/initial-state';
 
 const initialTestState = {
-  level: 1,
+  openCards: 0,
   cards: [
     {
       id: 1,
@@ -37,7 +37,7 @@ describe("root reducer", () => {
 
   it("CARD_CLICKED action should change card's clicked state to true ", () => {
     const expectedState = {
-      level: 1,
+      openCards: 1,
       cards: [
         {
           id: 1,
@@ -68,7 +68,7 @@ describe("root reducer", () => {
   });
   it("if the two cards with same color are clicked should remove them from the state", () => {
     const innerState = {
-      level: 1,
+      openCards: 1,
       cards: [
         {
           id: 1,
@@ -93,7 +93,7 @@ describe("root reducer", () => {
       ]
     };
     const expectedState = {
-      level: 1,
+      openCards: 0,
       cards: [
         {
           id: 1,
@@ -115,7 +115,7 @@ describe("root reducer", () => {
   });
   it("if colors do not the same, reset clicked property in the cards", () => {
     const innerState = {
-      level: 1,
+      openCards: 1,
       cards: [
         {
           id: 1,
@@ -140,7 +140,7 @@ describe("root reducer", () => {
       ]
     };
     const expectedState = {
-      level: 1,
+      openCards: 0,
       cards: [
         {
           id: 1,

@@ -6,8 +6,15 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../actions";
 
 const CardsBox = () => {
-  const { cards } = useSelector(state => state);
+  const { cards, openCards, isComparing } = useSelector(state => state);
   const dispatch = useDispatch();
+  const handleOnClick = (openCards, cardId)=>{
+    if(openCards < 2){
+      return(
+        dispatch(actions.cardClicked(cardId))
+      )
+    }
+  }
 
   
   //If no cards return Error. 
@@ -28,9 +35,10 @@ const CardsBox = () => {
         {cards.map(card => (
           <CSSTransition key={card.id} timeout={500} classNames="item">
             <ColorCard
+              id={card.id}
               color={card.color}
               clicked={card.clicked}
-              onClick={() => dispatch(actions.cardClicked(card.id))}
+              onClick={() => dispatch(actions.cardClicked(card.id, isComparing, openCards))}
             />
           </CSSTransition>
         ))}
@@ -40,3 +48,18 @@ const CardsBox = () => {
 };
 
 export default CardsBox;
+/*else if(isComparing){
+    return (
+      <TransitionGroup className="cards-box">
+        {cards.map(card => (
+          <CSSTransition key={card.id} timeout={500}  classNames="item">
+            <ColorCard
+              color={card.color}
+              clicked={card.clicked}
+              onClick={() => {}}
+            />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    );
+  } */

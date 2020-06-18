@@ -9,13 +9,14 @@
 }
 
 /* Container to position the front and back side */
-.color-card-inner {
+.color-card-inner{
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
+  
 }
 
 /*Do an horizontal flip on click at the card-box*/
@@ -30,12 +31,14 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  box-shadow: 0.2em 0.2em;
 }
 
 /* Style the front side */
 .color-card-front {
   background-color: #bbb;
   color: black;
+  background-image: radial-gradient(#fff, #8aecac,#f4f7b4);
 }
 
 /* Style the back, hidden side */
