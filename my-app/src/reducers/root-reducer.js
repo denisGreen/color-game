@@ -14,6 +14,7 @@ const trigClicked = card => {
 //remove cards with same color
 const removeColors = (state, cards, card, alredyClickedCard) => {
   return {
+    openCardId: "",
     isComparing: false,
     openCards: 0,
     cards: cards.filter(
@@ -46,6 +47,7 @@ const resetColorCards = (
   ];
   //reset first open card and save it on the same place
   return {
+    openCardId: "",
     isComparing: false,
     openCards: 0,
     cards: [
@@ -66,7 +68,7 @@ const compareColorsInCards = (state, cards, card) => {
 
  
   if (openCards === 2) {
-    console.log("one is clicked");
+    console.log("two is clicked");
     //then check id
     
     const cardIndexInCardsArray = cards.findIndex(({ id }) => id === card.id);
@@ -111,16 +113,28 @@ const disableComparingState= (state)=>{
 }
 //trig the card.clicked
 const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
-  const {openCards, isComparing} = state;
+  const {openCards, openCardId} = state;
 
   //skip click if two cards already open
   
     if(openCards < 2){
-      console.log("openCards", openCards)
+      console.log("openCards", openCards, openCardId, card.id)
       const clickedCard = trigClicked(card);
-  
+      if(openCardId === card.id){
+        return {
+          ...state,
+          openCardId: "",
+          openCards: 0,
+          cards: [
+            ...cards.slice(0, cardIndexInCardsArray),
+            clickedCard,
+            ...cards.slice(cardIndexInCardsArray + 1)
+          ]
+        };
+      }
       return {
         ...state,
+        openCardId: card.id,
         openCards: openCards + 1,
         cards: [
           ...cards.slice(0, cardIndexInCardsArray),

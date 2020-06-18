@@ -4,6 +4,8 @@ import { Types } from "../actions/types";
 import initialState from '../reducers/initial-state';
 
 const initialTestState = {
+  openCardId: "",
+  isComparing: false,
   openCards: 0,
   cards: [
     {

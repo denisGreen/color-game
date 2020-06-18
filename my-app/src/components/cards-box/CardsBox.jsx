@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../actions";
 
 const CardsBox = () => {
-  const { cards, openCards, isComparing } = useSelector(state => state);
+  const { cards, openCards, isComparing, openCardId } = useSelector(state => state);
   const dispatch = useDispatch();
   const handleOnClick = (openCards, cardId)=>{
     if(openCards < 2){
@@ -38,7 +38,7 @@ const CardsBox = () => {
               id={card.id}
               color={card.color}
               clicked={card.clicked}
-              onClick={() => dispatch(actions.cardClicked(card.id, isComparing, openCards))}
+              onClick={() => dispatch(actions.cardClicked(card.id, isComparing, openCards, openCardId))}
             />
           </CSSTransition>
         ))}

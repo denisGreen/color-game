@@ -24,10 +24,11 @@ const delayCardCompare = (id, dispatch) => {
 };
 
 //async action to trig the reducer
-export const cardClicked = (id, isComparing, openCards) => async dispatch => {
+export const cardClicked = (id, isComparing, openCards, openCardId) => async dispatch => {
   dispatch(cardToggleClick(id));
-  console.log("cardClicked", openCards)
-  if(!isComparing && openCards === 1) {
+  
+  //start comparing only if one card is open
+  if(!isComparing && openCards === 1 && openCardId !== id) {
     dispatch(cardCompareStart());
     const result = await delayCardCompare(id, dispatch)
     if(result){
