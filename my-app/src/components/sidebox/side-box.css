@@ -17,6 +17,8 @@
   @media screen and (max-width: 800px) {
     .side-box-text {
       font-size: 1rem;
-      margin: 300% -50%;
+      margin: 300% -150%;
+      width: 400%;
     }
   }
+  
