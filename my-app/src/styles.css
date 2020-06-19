@@ -1,6 +1,13 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
 .App {
   font-family: sans-serif;
   text-align: center;
+  font-size: 16px;
+  background-color: #4d4a4a;
+
 }
 
 .centered {

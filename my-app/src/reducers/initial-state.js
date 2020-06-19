@@ -1,12 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-// const makeColor = num => {
-//       let fistSix = id.slice(0, 6);
-//       return "#" + fistSix;
-//     };
-//     const color = makeColor(id);
-//     console.log(id);
-//     console.log(color);
+
 
 const initialState = {
   openCardId: "",

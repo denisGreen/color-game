@@ -8,34 +8,39 @@ export const cardCompareFinish = ()=> actionCreator(Types.CARD_COMPARE_FINISH);
 export const cardCompare = id => actionCreator(Types.CARD_COMPARE_COLORS, id);
 
 
-//delay the card compare action to see the second card color
+//delay the card compare action to let animation finish
 const delayCardCompare = (id, dispatch) => {
   return new Promise(resolve => {
 
-    
       setTimeout(() => {
 
         resolve(dispatch(cardCompare(id)));
       }, 1000);
-     
-    
+      
   });
     
 };
 
 //async action to trig the reducer
 export const cardClicked = (id, isComparing, openCards, openCardId) => async dispatch => {
-  dispatch(cardToggleClick(id));
+
+  //disable click if comparing and more then 2 clicks
+  if(!isComparing && openCards < 2){
+    dispatch(cardToggleClick(id));
+  }
+  
   
   //start comparing only if one card is open
   if(!isComparing && openCards === 1 && openCardId !== id) {
-    dispatch(cardCompareStart());
-    const result = await delayCardCompare(id, dispatch)
-    if(result){
-      dispatch(cardCompareFinish())
-    }
     
-  
+    //dispatch compare Start to disable other cards
+    dispatch(cardCompareStart());
+    //wait some time for the animation
+    await delayCardCompare(id, dispatch)
+
+    //after comparing finish enable all cards 
+    dispatch(cardCompareFinish())
+    
   }
   
 };

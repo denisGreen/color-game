@@ -1,0 +1,15 @@
+.side-box{
+    width: 10vw;
+}
+
+.right{
+    float: right;
+}
+
+.side-box-text{
+    color: #fff;
+    transform: rotate(90deg);
+    margin: 20vw 0;
+    text-align: center;
+    
+}

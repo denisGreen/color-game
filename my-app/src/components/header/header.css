@@ -1,7 +1,10 @@
 .header {
   width: 100%;
+  padding-top: 2em;
 }
-
+.header-text{
+  margin-top: 2rem;
+}
 .header-text-color-one{
   color: red;
 }
@@ -11,5 +14,13 @@
 }
 
 .header-text-color-three{
-  color: blue;
+  color: #4ca1fb;
+}
+
+h1.header-text{
+  text-shadow: 0.3rem 0.2rem 0.3rem black;
+}
+
+.header > h2{
+  color: #fff;
 }

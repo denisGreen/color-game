@@ -13,7 +13,7 @@ const ColorCard = ({ color, clicked, onClick, id }) => {
     >
         <div className={"color-card-inner" }>
           <div className="color-card-front">
-            <p className="color-card-text">Click Me:)</p>
+            <p className={"color-card-text"}>Click Me:)</p>
           </div>
 
           <div className="color-card-back" style={{ backgroundColor: color }}>

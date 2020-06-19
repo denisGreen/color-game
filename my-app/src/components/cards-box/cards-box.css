@@ -1,6 +1,5 @@
 .game-container {
-  width: 80%;
-  margin: auto;
+  width: 80vw;
   background-image: url(https://wallpapercave.com/wp/WO17o7O.jpg);
   background-position: center;
   background-size: auto;
@@ -11,4 +10,9 @@
 .item-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in;
+}
+
+.winner{
+  margin-top: 10rem;
+  font-size: 3rem;
 }
