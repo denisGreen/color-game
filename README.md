@@ -16,3 +16,4 @@ https://denisgreen.github.io/color-game-build-version/
 3. Jest,
 4. Enzyme,
 
+All styles I did without Bootstrap to show my CSS skills.

@@ -22,3 +22,8 @@ const makeCards = qantity => {
 
       cards = makeCards(8);
     }*/
+// const r = Math.floor(Math.random()*255).toString(16);
+// 	const g = Math.floor(Math.random()*255).toString(16);
+//   const b = Math.floor(Math.random()*255).toString(16);
+//   const firstColor = `#${r}${g}${b}`;
+//   console.log(firstColor);

@@ -54,18 +54,3 @@ const CardsBox = () => {
 };
 
 export default CardsBox;
-/*else if(isComparing){
-    return (
-      <TransitionGroup className="cards-box">
-        {cards.map(card => (
-          <CSSTransition key={card.id} timeout={500}  classNames="item">
-            <ColorCard
-              color={card.color}
-              clicked={card.clicked}
-              onClick={() => {}}
-            />
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
-    );
-  } */

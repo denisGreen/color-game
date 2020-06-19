@@ -11,6 +11,7 @@ const trigClicked = card => {
     clicked: !card.clicked
   };
 };
+
 //remove cards with same color
 const removeColors = (state, cards, card, alredyClickedCard) => {
   return {
@@ -23,13 +24,15 @@ const removeColors = (state, cards, card, alredyClickedCard) => {
     )
   };
 };
+
 //reset single card
-const resetCard = (card)=>{
+const resetCard = (card) => {
   return {
     ...card,
     clicked: false
   }
 }
+
 //reset cards with different colors
 const resetColorCards = (
   state,
@@ -57,27 +60,26 @@ const resetColorCards = (
     ]
   };
 };
+
 //compare colors in cards
 const compareColorsInCards = (state, cards, card) => {
-  const {openCards} = state;
+  const { openCards } = state;
+
+  //check if some card is open
   const alredyClickedCardIndex = cards.findIndex(
     ({ clicked, id }) => clicked === true && id !== card.id
   );
-  
-  //check if some card is open
 
- 
   if (openCards === 2) {
-    console.log("two is clicked");
-    //then check id
-    
+
     const cardIndexInCardsArray = cards.findIndex(({ id }) => id === card.id);
+    //check if alredyClickedCardIndex is exist
     if (alredyClickedCardIndex !== -1) {
-      console.log("colors not the same");//cardIndexInCardsArray !== alredyClickedCardIndex
+
       //then compare colors
       const alredyClickedCard = cards[alredyClickedCardIndex];
       if (alredyClickedCard.color === card.color) {
-        console.log("remove");
+
         return removeColors(state, cards, card, alredyClickedCard);
       } else {
         return resetColorCards(
@@ -89,53 +91,40 @@ const compareColorsInCards = (state, cards, card) => {
           alredyClickedCardIndex
         );
       }
-    }else{
-      return state;
-      
-    }//
+    }
   }
-    
-    return state;
+
+  return state;
 };
 //enable comparing state
-const enableComparingState= (state)=>{
-  return{
+const enableComparingState = (state) => {
+  return {
     isComparing: true,
     ...state
   }
 }
 //disable comparing state
-const disableComparingState= (state)=>{
-  return{
+const disableComparingState = (state) => {
+  return {
     isComparing: false,
     ...state
   }
 }
 //trig the card.clicked
 const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
-  const {openCards, openCardId} = state;
+  const { openCards, openCardId } = state;
 
   //skip click if two cards already open
-  
-    if(openCards < 2){
-      console.log("openCards", openCards, openCardId, card.id)
-      const clickedCard = trigClicked(card);
-      if(openCardId === card.id){
-        return {
-          ...state,
-          openCardId: "",
-          openCards: 0,
-          cards: [
-            ...cards.slice(0, cardIndexInCardsArray),
-            clickedCard,
-            ...cards.slice(cardIndexInCardsArray + 1)
-          ]
-        };
-      }
+
+  if (openCards < 2) {
+    
+    const clickedCard = trigClicked(card);
+    //reset state for the same card
+    if (openCardId === card.id) {
       return {
         ...state,
-        openCardId: card.id,
-        openCards: openCards + 1,
+        openCardId: "",
+        openCards: 0,
         cards: [
           ...cards.slice(0, cardIndexInCardsArray),
           clickedCard,
@@ -143,10 +132,21 @@ const whenClicked = (state, cards, card, cardIndexInCardsArray) => {
         ]
       };
     }
-  
-  
+    return {
+      ...state,
+      openCardId: card.id,
+      openCards: openCards + 1,
+      cards: [
+        ...cards.slice(0, cardIndexInCardsArray),
+        clickedCard,
+        ...cards.slice(cardIndexInCardsArray + 1)
+      ]
+    };
+  }
+
+
   return state;
-  
+
 };
 
 //root reducer will be passed to the store
