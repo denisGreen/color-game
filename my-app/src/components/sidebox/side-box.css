@@ -1,15 +1,22 @@
-.side-box{
+.side-box {
     width: 10vw;
-}
-
-.right{
+  }
+  
+  .right {
     float: right;
-}
-
-.side-box-text{
+  }
+  
+  .side-box-text {
     color: #fff;
     transform: rotate(90deg);
-    margin: 20vw 0;
+    margin: 200% -50%;
     text-align: center;
-    
-}
+    width: 200%;
+  }
+  
+  @media screen and (max-width: 800px) {
+    .side-box-text {
+      font-size: 1rem;
+      margin: 300% -50%;
+    }
+  }
