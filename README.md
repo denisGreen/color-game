@@ -4,10 +4,13 @@
 
     All development files you can find in the my-app folder
 
-   ## Link to the compiled version:
+   ## Links to the compiled version:
 
+## GitHub Pages:
 https://denisgreen.github.io/color-game-build-version/
 
+## Codesendbox:
+https://codesandbox.io/s/color-game-test-final-iyisq?file=/src/index.js
 
    ## Technologies:
 
