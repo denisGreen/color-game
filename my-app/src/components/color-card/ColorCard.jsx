@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React from "react";
 import "./color-card.css";
 import PropTypes from "prop-types";
 

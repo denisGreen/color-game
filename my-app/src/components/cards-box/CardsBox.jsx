@@ -8,13 +8,7 @@ import * as actions from "../../actions";
 const CardsBox = () => {
   const { cards, openCards, isComparing, openCardId } = useSelector(state => state);
   const dispatch = useDispatch();
-  const handleOnClick = (openCards, cardId) => {
-    if (openCards < 2) {
-      return (
-        dispatch(actions.cardClicked(cardId))
-      )
-    }
-  }
+  
 
 
   //If no cards return Error. 
