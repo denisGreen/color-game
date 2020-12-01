@@ -22,3 +22,11 @@
     }
   }
   
+  @media screen and (max-width: 360px) {
+    .side-box-text {
+        transform: rotate(-90deg);
+        font-size: 1rem;
+        margin: 300% -150%;
+        width: 500%;
+    }
+  }
