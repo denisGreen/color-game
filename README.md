@@ -1,6 +1,6 @@
    # COLOR-GAME
 
-    ## Testing changes in the original repo!!!
+    #TEST 2
 
     All development files you can find in the my-app folder
 
