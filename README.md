@@ -1,6 +1,6 @@
    # COLOR-GAME
 
-    This is test project for the CDG
+    ## Testing changes in the original repo!!!
 
     All development files you can find in the my-app folder
 
